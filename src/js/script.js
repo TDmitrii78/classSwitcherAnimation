@@ -1,3 +1,4 @@
+'use strict';
 function animationElement(settingArrey) {
     class Element {
         constructor(track, animateElement, activClass, disableClass, enableClass, startDelay, delayBetweenElement, ratio, sensivityOffset, cycleAnimation) {
@@ -29,7 +30,7 @@ function animationElement(settingArrey) {
         const track = (trackElement) ? document.querySelector(`${(trackElement)}`) : false; 
         const allAnimateElement = document.querySelectorAll(`${animateElements}`);
         const arr = [];
-        for (el of allAnimateElement) {
+        for (let el of allAnimateElement) {
             arr.push(new Element(track, el, activClass, disableClass, enableClass, startDelay, delayBetweenElement, ratio, sensivityOffset, cycleAnimation));
         }
         startupEnableClass(arr, enableClass);
@@ -39,7 +40,7 @@ function animationElement(settingArrey) {
 
     const arrObjElement = [];
 
-    for (item of settingArrey) {
+    for (let item of settingArrey) {
         arrObjElement.push(createElement(...item));
     }
 
@@ -50,7 +51,7 @@ function animationElement(settingArrey) {
     }
 
     function removeClass(arrObjElement, disableClass) {
-        for (item of disableClass.split(' ')) {
+        for (let item of disableClass.split(' ')) {
             arrObjElement.forEach(el => {
                 if (el.animateElement.classList.contains(item)) {
                     el.animateElement.classList.remove(item);
@@ -66,7 +67,7 @@ function animationElement(settingArrey) {
     }
 
     function addClass(arrObjElement, enableClass) {
-        for (item of enableClass.split(' ')) {
+        for (let item of enableClass.split(' ')) {
             arrObjElement.forEach(el => { 
                 if (!el.animateElement.classList.contains(item)) {
                     el.animateElement.classList.add(item);
@@ -104,7 +105,7 @@ function animationElement(settingArrey) {
     let delay = 0;
     
     return function start() {
-        for (item of arrObjElement) {
+        for (let item of arrObjElement) {
             baseLogic(item);
         }
     }
